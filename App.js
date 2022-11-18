@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Alert, Button, Modal, Pressable, StyleSheet, Text, TextInput, ToastAndroid, View } from 'react-native';
+import { Image, Alert, Button, Modal, Pressable, StyleSheet, Text, TextInput, ToastAndroid, View } from 'react-native';
 
 export default function App() {
   const [name,setName] = useState('');
@@ -111,12 +111,12 @@ export default function App() {
           </Text>          
         ) :
         (
-          <Text style={[styles.text,{marginTop:10}]}>
-            Your name is: {name}
-         </Text>
+          <Image style={styles.image}
+            source={require('./assets/error.png')}
+            resizeMode="stretch"
+          />
         )
       }
-
     </View>
   );
 }
@@ -186,5 +186,10 @@ const styles = StyleSheet.create({
     textAlign:"center",
     fontSize: 20,
     marginBottom:10
+  },
+  image:{
+    width:100,
+    height:100,
+    marginTop:10
   }
 });
