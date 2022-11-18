@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Image, Alert, Button, Modal, Pressable, StyleSheet, Text, TextInput, ToastAndroid, View } from 'react-native';
+import { Image, Alert, Button, Modal, Pressable, StyleSheet, Text, TextInput, ToastAndroid, View, ImageBackground } from 'react-native';
 
 export default function App() {
   const [name,setName] = useState('');
@@ -43,7 +43,10 @@ export default function App() {
     }
   }
   return (
-    <View style={styles.body}>
+    <ImageBackground 
+      style={styles.body}
+      source={require('./assets/bg.jpeg')}
+      resizeMode="stretch">
 
       <Modal
         visible={showWarning}
@@ -93,11 +96,12 @@ export default function App() {
       <Pressable 
         onPress={onPress}
         // delayLongPress={2000}
-        hitSlop = {{left:20,right:20}}
+        // hitSlop = {{left:20,right:20}}
         android_ripple = {{color:"#00f"}}
-        style = { ({ pressed }) => [
-          { backgroundColor: pressed ? '#ddd' : '#00ff00'},
-          styles.button
+        style = { 
+          ({ pressed }) => [
+            { backgroundColor: pressed ? '#ddd' : '#00ff00'},
+            styles.button
         ]}
       >
         <Text style={styles.text}>
@@ -106,25 +110,33 @@ export default function App() {
       </Pressable>
       {
         IsSubmitted ? (
-          <Text style={[styles.text,{marginTop:10}]}>
-            You are registered as {name}
-          </Text>          
+          <View style={styles.body}>
+            <Text style={[styles.text]}>
+              You are registered as {name}
+            </Text>
+            <Image style={styles.image}
+              source={require('./assets/done.png')}
+              resizeMode="stretch"
+            /> 
+          </View>         
         ) :
         (
           <Image style={styles.image}
-            source={require('./assets/error.png')}
+            // source={require('./assets/error.png')}
+            source={{uri:'https://pixabay.com/get/g80d4c20344d63d01aafc6964a0a4e95bcbddf18ab26a42300e1088646d72b3b7d87825c0d9f8d05c12f43798e00e589de63214d6a824fa7e444e58a9a58f50ecba74a542decda133ada794ea7031e1c3_640.png'}}
             resizeMode="stretch"
+            // blurRadius={15}
           />
         )
       }
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     alignItems: 'center',
     // justifyContent: 'center',
   },
@@ -168,6 +180,7 @@ const styles = StyleSheet.create({
     height:50,
     // backgroundColor: "#00ff00",
     alignItems:'center',
+    justifyContent:'center',
     borderRadius:5
   },
   text:{
