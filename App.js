@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Image, Alert, Button, Modal, Pressable, StyleSheet, Text, TextInput, ToastAndroid, View, ImageBackground } from 'react-native';
 import JereButton from './components/JereButton'
+import Header from './components/Header'
 
 export default function App() {
   const [name,setName] = useState('');
@@ -51,6 +52,7 @@ export default function App() {
       source={require('./assets/bg.jpeg')}
       resizeMode="stretch">
 
+      <Header />
       <Modal
         visible={showWarning}
         transparent={true}
@@ -172,13 +174,13 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius:10,
     borderBottomRightRadius:10
   },
-  // text:{
-  //   fontSize:20,
-  //   color:"black",
-  //   margin:5,
-  //   textAlign:"center"
-  //   // paddingVertical:10
-  // },
+  text:{
+    fontSize:24,
+    color:"black",
+    margin:5,
+    textAlign:"center"
+    // paddingVertical:10
+  },
   input:{
     width:200,
     height:40,
