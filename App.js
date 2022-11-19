@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Image, Alert, Button, Modal, Pressable, StyleSheet, Text, TextInput, ToastAndroid, View, ImageBackground } from 'react-native';
+import JereButton from './components/JereButton'
 
 export default function App() {
   const [name,setName] = useState('');
@@ -42,6 +43,8 @@ export default function App() {
       )
     }
   }
+  //const Btitle = IsSubmitted ? 'Clear' : 'Submit';
+
   return (
     <ImageBackground 
       style={styles.body}
@@ -93,21 +96,15 @@ export default function App() {
       />
       */}
 
-      <Pressable 
-        onPress={onPress}
-        // delayLongPress={2000}
-        // hitSlop = {{left:20,right:20}}
-        android_ripple = {{color:"#00f"}}
-        style = { 
-          ({ pressed }) => [
-            { backgroundColor: pressed ? '#ddd' : '#00ff00'},
-            styles.button
-        ]}
-      >
-        <Text style={styles.text}>
-          {IsSubmitted ? 'Clear' : 'Submit'}
-        </Text>
-      </Pressable>
+
+      <JereButton onPress={onPress} title={IsSubmitted ? 'Clear' : 'Submit'} color={"#229922"}/>
+      <JereButton onPress={()=>onPress()}
+        title={'Norway'} 
+        color={'purple'} 
+        style={{margin:10}}
+      />
+      {/* <JereButton onPress={()=>onPress()} title={Btitle}/> */}
+      
       {
         IsSubmitted ? (
           <View style={styles.body}>
@@ -175,21 +172,13 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius:10,
     borderBottomRightRadius:10
   },
-  button:{
-    width:150,
-    height:50,
-    // backgroundColor: "#00ff00",
-    alignItems:'center',
-    justifyContent:'center',
-    borderRadius:5
-  },
-  text:{
-    fontSize:20,
-    color:"black",
-    margin:5,
-    textAlign:"center"
-    // paddingVertical:10
-  },
+  // text:{
+  //   fontSize:20,
+  //   color:"black",
+  //   margin:5,
+  //   textAlign:"center"
+  //   // paddingVertical:10
+  // },
   input:{
     width:200,
     height:40,
